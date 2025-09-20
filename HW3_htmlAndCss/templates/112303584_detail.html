@@ -2,10 +2,147 @@
 <html>
     <head>
         <title>How to slove Rubik's cube</title>
-        <!-- <link rel="styl esheet" href="../static/css/112303584_css.css"> -->
+        <link rel="stylesheet" href="../static/css/112303584_css.css"> <!--我有聽到助教說兩個網頁應該寫兩個css，但我有點懶，就讓它們共用一個css，都在修飾導覽列和背景-->
     </head>
     <body>
+         
+        <div class="navbar">
+            <a href="../templates/112303584_index.html">主頁</a>
+            <div class="dropdown">
+                <button class="dropdown-button">推薦網站</button>
+                <div class="dropdown-content">
+                    <a href="https://www.youtube.com/@1hrBLD">YT教學</a>
+                    <a href="https://cstimer.net/">計時器</a>
+                </div>
+            </div>
+        </div>
 
-       
+        <br><br><br>
+
+        <h1>怎麼解魔術方塊</h1>
+        魔術方塊有很多種類型，也有很多種不同的解法<br>
+        先從最基礎的3X3開始，我們有：<br>
+
+        <ul>
+            <li>雙公式基本解：適合對魔術方塊一竅不通的你，只要學會兩個公式就能還原魔術方塊</li>
+            <li>CFOP：經過公式化整理後的解法，學會的話會大幅提升還原速度，是目前大部分高手用的方法</li>
+            <li>盲解：對於<del>不想當人</del>想挑戰刺激的你，盲解是一條嶄新道路，非常考驗記憶力和空間概念</li>
+        </ul>
+
+        <table>
+            <tr>
+                <th>
+                    <iframe width="448" height="252" src="https://www.youtube.com/embed/76NmRQx5CLA?si=dMh2uQWGQkqvXib0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </th>
+                <th>
+                    <iframe width="448" height="252" src="https://www.youtube.com/embed/FXNqd3wEHYI?si=3KTEpc97HtjBz9_F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </th>
+                <th>
+                    <iframe width="448" height="252" src="https://www.youtube.com/embed/0VcUv6383Ik?si=UHWnuY6VjM3R6NPP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </th>
+            </tr>
+        </table>
+        <br>
+        除了3X3以外，還有其他種魔術方塊
+        <table border="1">
+            <tr>
+                <th>
+                    <font size="5">NxN</font>
+                </th>
+                <th colspan="3">
+                    <font size="5">異形</font>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <img src="../static/img/13x13.png"
+                         alt="找不到圖片"
+                         height="300px">
+                </th>
+                <th>
+                    <img src="../static/img/Megaminx.png"
+                         alt="找不到圖片"
+                         height="300px">
+                </th>
+                <th>
+                    <img src="../static/img/Pyraminx.png"
+                         alt="找不到圖片"
+                         height="300px">
+                </th>
+                <th>
+                    <img src="../static/img/Mirror.png"
+                         alt="找不到圖片"
+                         height="300px">
+                </th>
+            </tr>
+             <tr>
+                <td>
+                    <font size="3">
+                        除了3X3以外，還有2X2、4X4...到13X13<br>
+                        世界紀錄最大到49X49
+                    </font>
+                </td>
+                <td colspan="3">
+                    <font size="3">
+                        由左至右分別是五魔方(Megaminx)、金字塔(Pyraminx)、鏡面魔方(Mirror)<br>
+                        除了上面三種外還有很多其他類型
+                    </font>
+                </td>
+            </tr>
+        </table>
+
+         <br><hr>
+
+        <form action="../templates/112303584_index.html" method="post">
+            <h2>回饋表單</h2><br>
+
+            <label for="input_1">姓名:</label>
+            <input name="input_1" id="input_1">
+
+            <br><br>
+
+            <label for="select_1">性別</label>
+            <select name="select_1" id="select_1">
+                <option value="選項一">戰鬥直升機</option>
+                <option value="選項二">男性</option>
+                <option value="選項三">女性</option>
+                <option value="選項四">虎式坦克</option>
+            </select>
+
+            <br><br>
+
+            <label for="select_1">你有玩過魔術方塊嗎？</label><br>
+            <input type="radio" name="radio" id="radio_1" value="radio_1">
+            <label for="radio_1">有，但我不會把它變回原樣</label><br>
+            <input type="radio" name="radio" id="radio_2" value="radio_2">
+            <label for="radio_2">有，而且我會還原魔術方塊</label><br>
+            <input type="radio" name="radio" id="radio_3" value="radio_3">
+            <label for="radio_3">沒有，只有看過別人玩過</label><br>
+        
+            <br>
+
+            <label for="select_1">你會想嘗試哪種解法或其他魔術方塊</label><br>
+            <input type="checkbox" name="checkbox_1" id="checkbox_1">
+            <label for="checkbox_1">雙公式</label><br>
+            <input type="checkbox" name="checkbox_2" id="checkbox_2">
+            <label for="checkbox_2">CFOP</label><br>
+            <input type="checkbox" name="checkbox_3" id="checkbox_3">
+            <label for="checkbox_3">盲解</label><br>
+            <input type="checkbox" name="checkbox_4" id="checkbox_4">
+            <label for="checkbox_4">3x3</label><br>
+            <input type="checkbox" name="checkbox_5" id="checkbox_5">
+            <label for="checkbox_5">NxN</label><br>
+            <input type="checkbox" name="checkbox_7" id="checkbox_6">
+            <label for="checkbox_6">異形</label><br>
+
+            <br>
+
+            <label for="textarea_1">想問助教們對我們使用AI的看法：</label><br>
+            <textarea name="textarea_1" id="textarea_1" rows="8" cols="64">我自己是把AI當作助教在問，不會叫她幫我無中生有一整串程式碼然後複製貼上，只會問她怎麼用程式碼達到我想要的效果(例如背景的漸層)，或者是請他幫我看問題在哪、怎麼解決，並且要求他解釋每個字的意義。</textarea>
+
+            <br><br>
+
+            <input type="submit">
+        </form>
     </body>
 </html>

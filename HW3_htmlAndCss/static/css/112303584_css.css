@@ -1,26 +1,30 @@
+/* 確保等一下對body作背景填充會塞滿整格個網頁 */
 html, body {
   height: 100%;
-  margin: 0;
+  margin: 0; /*把四個方向的外邊距都設成 0*/
 }
 
+/* 給背景上色 */
 body{
-    background: linear-gradient(to bottom, #d0ffff, white, #d0ffff);
+    /* https://grabient.com */
+    /* google好看的漸層就找到上面的網址了 */
+    background: radial-gradient(rgba(142, 197, 252, 1.000) 0.000%, rgba(141, 211, 255, 1.000) 25.000%, rgba(161, 216, 255, 1.000) 50.000%, rgba(193, 210, 255, 1.000) 75.000%, rgba(224, 195, 255, 1.000) 100.000%);
+    /* https://grabient.com/HQdgLAbANKkwnPAzFAtABmAJnQRhruumpocRsGDiZVtBZGDOgKwsw4g1ZVA?style=linearGradient&steps=5&angle=45  複製過來後小作修改*/
 }
 
 /* 導覽列 */
 .navbar{
-    position: fixed; /*為了讓他在網頁最上面*/
-    top: 0px;
-    left: 0px;
+    position: fixed; /*固定在網頁最上面，即使滾動也一樣*/
+    margin: 0;
     width: 100%;
     height: 76px;
-    background-color: darkblue;
+    background: linear-gradient(to left, rgb(64, 64, 64), rgb(0, 0, 0));
     font-family: Arial;
 }
 
-/* navbar跟超連結的a */
+/* navbar裡的超連結a */
 .navbar a{
-    float: left;  /*排在左邊*/
+    float: left;  /* 置左 */
     font-size: 30px;
     color: white;
     text-align: center;
@@ -28,37 +32,37 @@ body{
     text-decoration: none;  /* 超連結不再有底線 */
 }
 
-/*下拉式選單*/
+/* 下拉式選單 */
 .dropdown{
     float: left;
-    /* overflow: hidden; */
 }
 
-/*下拉式選單跟link的按鈕*/
-.dropdown .dropbtn{
+/* 下拉式選單和link的按鈕 */
+.dropdown .dropdown-button{
     font-size: 30px;
-    border: none;
+    border: none; /* 完全取消元素的邊框 */
     color: white;
     padding: 16px 32px;
-    background-color: inherit; /*沿用父元素*/
+    background-color: inherit; /* 沿用父元素 */
     font-family: inherit;
     margin: 0;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn{
+/* 給navbar和dropdown hover效果 */
+.navbar a:hover, .dropdown:hover{
     background-color: rgb(255, 0, 0);
 }
 
-/*下拉式選單的內容*/
+/* 下拉式選單的內容 */
 .dropdown-content{
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    min-width: 184px;
     z-index: 1;
 }
 
+/* dropdown-content裡的超連結a */
 .dropdown-content a{
     float: none;
     color: black;
@@ -68,11 +72,12 @@ body{
     text-align: left;
 }
 
+/* 給dropdown-content裡的超連結a hover效果*/
 .dropdown-content a:hover{
     background-color: #ddd;
 }
 
-/*下拉式選單的框框*/
+/* 當滑鼠移到 dropdown 元素上時，顯示其內部的 dropdown-content 元素 */
 .dropdown:hover .dropdown-content{
     display: block;
 }
