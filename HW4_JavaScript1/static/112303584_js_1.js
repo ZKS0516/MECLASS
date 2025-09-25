@@ -1,5 +1,5 @@
 
-let answer = Math.floor(Math.random() * 100) + 1;
+let answer = Math.floor(Math.random() * 101);
 let attempts = 0;
 console.log(answer);
 
