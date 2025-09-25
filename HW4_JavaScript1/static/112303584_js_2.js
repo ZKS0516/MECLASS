@@ -15,6 +15,7 @@ for (let i = 0; i < symbols.length; i++) {
     document.write("<button style='width:50px; height:50px; font-size:20px;' onclick='textSymbols(" + i + ")'>" + symbols[i] + "</button>");
 }
 
+document.write("<button style='width:100px; height:50px; font-size:20px;' onclick='count()'>=</button><br>");
 
 function textNumber(num) {
     const input = document.getElementById("inputBox");
@@ -28,4 +29,11 @@ function clearInput() {
 function textSymbols(num) {
     const input = document.getElementById("inputBox");
     input.value += symbols[num];
+}
+
+function count(){
+    const input = document.getElementById("inputBox");    
+    let result = new Function("return " + input.value)();
+    alert(input.value + "=" + result);
+    input.value = result;
 }
