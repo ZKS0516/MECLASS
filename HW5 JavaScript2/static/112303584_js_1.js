@@ -5,11 +5,13 @@ console.log(answer); //先在主控台印出答案，方便debug
 
 const hint = document.getElementById("hint");
 const time = document.getElementById("time");
+const records = document.getElementById("records");
 
 function checkGuess(){
-    const guess = Number(document.getElementById("guess").value);
-    //宣告常數guess(使用者的輸入不能被更改)，透過getElementById找id="guesss"，並把這個"物件"的value先Number再存入guess
-    
+    let timeStr = new Date().toLocaleTimeString()
+    const input = document.getElementById("guess");
+    const guess = Number(input.value);
+
     attempts++; //嘗試次數+1
 
     if (guess > 100 || guess < 0) {
@@ -25,17 +27,26 @@ function checkGuess(){
     } 
     
     else {
-        alert("恭喜你猜對了，你總共猜了"+attempts+"次。");
+        alert("恭喜你猜對了，你總共猜了" + attempts + "次，花了" + times + "秒。");
+        const li = document.createElement("li");
+        li.textContent = "猜了" + attempts + "次，耗時" + times + "，" + timeStr;
+        document.getElementById("records").appendChild(li);
+        timer = null;
+        num = 0;
         answer = Math.floor(Math.random() * 100) + 1; //產生新的答案
         attempts = 0; //重置嘗試次數
         console.log(answer); //在主控台印出答案，方便debug
     }
+
+    input.value = null;
 }
 
 let num = 0;
+let times = 0;
 function count() {
     num++;
-    time.innerHTML = "時間：" + num/100 + "s";
+    times = num / 100;
+    time.innerHTML = "時間：" + times + "s";
 }
 
 let timer = null;
@@ -44,16 +55,5 @@ function startTimer() {
 
   timer = setInterval(count, 10); // 每  秒執行一次
 }
-
-/*let count = 0;
-let timer = null;
-
-function startTimer() {
-  if (timer !== null) return; // 避免重複啟動
-  timer = setInterval(function() {
-    count++;
-    document.getElementById("time").innerHTML = "時間：" + count;
-  }, 1000); // 每 1 秒執行一次
-}*/
 
 
