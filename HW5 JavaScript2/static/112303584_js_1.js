@@ -4,6 +4,7 @@ let attempts = 0; //初始化嘗試次數=0
 console.log(answer); //先在主控台印出答案，方便debug
 
 const hint = document.getElementById("hint");
+const time = document.getElementById("time");
 
 function checkGuess(){
     const guess = Number(document.getElementById("guess").value);
@@ -12,15 +13,15 @@ function checkGuess(){
     attempts++; //嘗試次數+1
 
     if (guess > 100 || guess < 0) {
-        hint.innerHTML="hint:超出範圍，請重新輸入"; //訂個上下限，避免使用者亂來
+        hint.innerHTML="hint：超出範圍，請重新輸入"; //訂個上下限，避免使用者亂來
       }
 
     else if (guess > answer && guess <= 100) {
-        hint.innerHTML="hint:太大了，再猜猜看";
+        hint.innerHTML="hint：太大了，再猜猜看";
     } 
     
     else if (guess < answer && guess >= 0) {
-        hint.innerHTML="hint:太小了，再猜猜看";
+        hint.innerHTML="hint：太小了，再猜猜看";
     } 
     
     else {
@@ -30,3 +31,29 @@ function checkGuess(){
         console.log(answer); //在主控台印出答案，方便debug
     }
 }
+
+let num = 0;
+function count() {
+    num++;
+    time.innerHTML = "時間：" + num/100 + "s";
+}
+
+let timer = null;
+function startTimer() {
+  if (timer !== null) return; // 避免重複啟動
+
+  timer = setInterval(count, 10); // 每  秒執行一次
+}
+
+/*let count = 0;
+let timer = null;
+
+function startTimer() {
+  if (timer !== null) return; // 避免重複啟動
+  timer = setInterval(function() {
+    count++;
+    document.getElementById("time").innerHTML = "時間：" + count;
+  }, 1000); // 每 1 秒執行一次
+}*/
+
+
