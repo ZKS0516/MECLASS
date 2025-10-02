@@ -29,7 +29,7 @@ function checkGuess(){
     else {
         alert("恭喜你猜對了，你總共猜了" + attempts + "次，花了" + times + "秒。");
         const li = document.createElement("li");
-        li.textContent = "猜了" + attempts + "次，耗時" + times + "，" + timeStr;
+        li.textContent = "猜了" + attempts + "次，耗時" + times + "秒，" + timeStr;
         document.getElementById("records").appendChild(li);
         clearInterval(timer);
         timer = null;
