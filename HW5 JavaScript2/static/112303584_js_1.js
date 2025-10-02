@@ -31,6 +31,7 @@ function checkGuess(){
         const li = document.createElement("li");
         li.textContent = "猜了" + attempts + "次，耗時" + times + "，" + timeStr;
         document.getElementById("records").appendChild(li);
+        clearInterval(timer);
         timer = null;
         num = 0;
         answer = Math.floor(Math.random() * 100) + 1; //產生新的答案
