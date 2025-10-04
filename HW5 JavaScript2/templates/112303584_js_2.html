@@ -2,8 +2,79 @@
 <html>
     <head>
         <title>112303584_購物車</title>
-        <script src="../static/112303584_js_2.js"></script>
+        <link rel="stylesheet" href="../static/112303584_js_2.css">
     </head>
     <body>
+        <h1>購物車</h1>
+        <table border="1" width="1000px">
+            <tr>
+                <th>
+                    <label style="cursor:pointer;"> <!--"cursor:pointer;"，滑鼠移到這個標籤上時，顯示為「手指」圖示，表示它是可點擊的。-->
+                        <input type="checkbox" id="check-all"> 全選
+                    </label>
+                </th>
+                <th>商品名稱</th>
+                <th>商品圖片</th>
+                <th>庫存</th>
+                <th>單價</th>
+                <th>數量</th>
+                <th>總計</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="checkbox_1" id="checkbox_1"></td>
+                <td><h4>switch2</h4></td>
+                <td><img src="../static/img/switch2.png" alt="找不到圖片" width="200px"></td>
+                <td><h4>8</h4></td>
+                <td class="price" data-price="14380"><h4>$14,380</h4></td>
+                <td>
+                    <div class="quantity">
+                        <button class="btn-minus">−</button>
+                        <input type="text" class="qty-input" value="1">
+                        <button class="btn-plus">＋</button>
+                    </div>
+                </td>
+                <td class="subtotal"><h4>$14,380</h4></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="checkbox_3" id="checkbox_3"></td>
+                <td><h4>Xbox Seies X</h4></td>
+                <td><img src="../static/img/Xbox_Seies_X.png" alt="找不到圖片" width="200px"></td>
+                <td><h4>8</h4></td>
+                <td class="price" data-price="17580"><h4>$17,580</h4></td>
+                <td>
+                    <div class="quantity">
+                        <button class="btn-minus">−</button>
+                        <input type="text" class="qty-input" value="1">
+                        <button class="btn-plus">＋</button>
+                    </div>
+                </td>
+                <td class="subtotal"><h4>$17,580</h4></td>
+            </tr>             
+            <tr>
+                <td><input type="checkbox" name="checkbox_2" id="checkbox_2"></td>
+                <td><h4>PS5主機板</h4></td>
+                <td><img src="../static/img/PS5_PRO.png" alt="找不到圖片" width="200px"></td>
+                <td><h4>8</h4></td>
+                <td class="price" data-price="24280"><h4>$24,280</h4></td>
+                <td>
+                    <div class="quantity">
+                        <button class="btn-minus">−</button>
+                        <input type="text" class="qty-input" value="1">
+                        <button class="btn-plus">＋</button>
+                    </div>
+                </td>
+                <td class="subtotal"><h4>$24,280</h4></td>
+            </tr>
+  
+            <tr>
+                <td colspan="6" style="text-align:right; font-weight:bold;">已勾選商品總價：</td>
+                <td id="total"><h4>$0</h4></td>
+            </tr>
+
+        </table>
+
+        <button id="btn-checkout" style="margin:16px 0; padding:8px 16px;">結帳</button>
+
+        <script src="../static/112303584_js_2.js"></script>
     </body>
 </html>
