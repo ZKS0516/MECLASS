@@ -56,4 +56,21 @@ document.addEventListener("DOMContentLoaded", () => { //「初始化事件監聽
         syncMasterFromItems();
         });
     }
+
+    // ===================== 綁定每一列（數量 / 小計 / blur驗證） =====================
+    $$(".quantity").forEach(qtyBox => {
+        const row = qtyBox.closest("tr");
+        const minusBtn = $(".btn-minus", qtyBox);
+        const plusBtn  = $(".btn-plus",  qtyBox);
+        const input    = $(".qty-input",  qtyBox);
+        const price    = parseInt($(".price", row)?.dataset.price || "0", 10);
+        const subCell  = $(".subtotal", row);
+
+        function updateSubtotal() {
+            const qty = parseInt(input.value, 10) || 0;     // 允許 0（結帳後可被設 0）
+            const sub = price * qty;
+            if (subCell) subCell.innerHTML = `<h4>${numberToMoney(sub)}</h4>`;
+            updateTotal();
+        }
+    });
 });
