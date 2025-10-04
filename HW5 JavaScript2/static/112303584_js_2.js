@@ -72,5 +72,29 @@ document.addEventListener("DOMContentLoaded", () => { //「初始化事件監聽
             if (subCell) subCell.innerHTML = `<h4>${numberToMoney(sub)}</h4>`;
             updateTotal();
         }
+        // 減號：不少於 1，不超過庫存
+        minusBtn.addEventListener("click", () => {
+            const stock = getStock(row);
+            let val = parseInt(input.value, 10) || 1;
+            val = clampQtyByStock(val - 1, stock, false);
+            input.value = val;
+            updateSubtotal();
+        });
+
+        // 加號：不超過庫存
+        plusBtn.addEventListener("click", () => {
+            const stock = getStock(row);
+            let val = parseInt(input.value, 10) || 0;
+            val = clampQtyByStock(val + 1, stock, false);
+            input.value = val;
+            updateSubtotal();
+        });
+
+        // 直接輸入：blur 規則（>庫存→庫存；非數字或<1→1；並重算）
+        input.addEventListener("blur", () => {
+            const stock = getStock(row);
+        input.value = clampQtyByStock(input.value, stock, false);
+        updateSubtotal();
+        });
     });
 });
