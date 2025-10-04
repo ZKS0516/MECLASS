@@ -110,4 +110,57 @@ document.addEventListener("DOMContentLoaded", () => { //「初始化事件監聽
         input.value = clampQtyByStock(input.value, getStock(row), false);
         updateSubtotal();
     });
+
+    // ===================== 結帳 =====================
+    const checkoutBtn = $("#btn-checkout");
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener("click", () => {
+            const total = updateTotal();
+            if (total <= 0) return; // 沒選東西就不動作
+
+            // 蒐集明細（僅勾選列）
+            const details = [];
+            $$("#cart tbody tr, tbody tr").forEach(row => {
+                const cb = $('input[type="checkbox"]', row);
+                if (!cb?.checked) return;
+
+                const name = (row.querySelector("td:nth-child(2)")?.innerText || "").trim();
+                const price = parseInt($(".price", row)?.dataset.price || "0", 10);
+                const qty = parseInt($(".qty-input", row)?.value || "0", 10);
+                if (qty > 0) details.push(`${name} x ${qty} = ${numberToMoney(price * qty)}`);
+            });
+
+        alert(`結帳明細：\n\n${details.join("\n")}\n\n總計：${numberToMoney(total)}`);
+
+        // 結帳後：取消勾選、扣庫存、數量回 1 或 0、更新小計
+        $$("#cart tbody tr, tbody tr").forEach(row => {
+            const cb = $('input[type="checkbox"]', row);
+            if (!cb?.checked) return;
+
+            const qtyInput = $(".qty-input", row);
+            const buyQty   = parseInt(qtyInput?.value || "0", 10);
+            const stock    = getStock(row);
+            const newStock = Math.max(0, stock - buyQty);
+
+            setStock(row, newStock);                    // 扣庫存
+            if (qtyInput) qtyInput.value = newStock > 0 ? 1 : 0;  // 有庫存→1；無庫存→0
+            cb.checked = false;                         // 取消勾選
+
+            // 更新小計
+            const price = parseInt($(".price", row)?.dataset.price || "0", 10);
+            const newQty = parseInt(qtyInput?.value || "0", 10);
+            const sub = price * newQty;
+            const subCell = $(".subtotal", row);
+            if (subCell) subCell.innerHTML = `<h4>${numberToMoney(sub)}</h4>`;
+        });
+
+        // 結尾：更新總價與全選狀態
+        updateTotal();
+        syncMasterFromItems();
+        });
+    }
+
+    // ===================== 初始化 =====================
+    updateTotal();
+    syncMasterFromItems();
 });
