@@ -1,3 +1,5 @@
+//這是看GPT和同學寫出來的，有很多東西都不懂，有試著了解並增加自己的註解，但迫於時間沒有全部看完，連假期間會把全部都看懂，試著用自己的方式寫一個新的
+
 document.addEventListener("DOMContentLoaded", () => { //「初始化事件監聽器」，當整個 HTML 文件載入完成後，就執行裡面的程式碼。
 
     const $ = (sel, root = document) => root.querySelector(sel); //抓第一個符合條件的元素
@@ -164,3 +166,5 @@ document.addEventListener("DOMContentLoaded", () => { //「初始化事件監聽
     updateTotal();
     syncMasterFromItems();
 });
+
+//這是看GPT和同學寫出來的，有很多東西都不懂，有試著了解並增加自己的註解，但迫於時間沒有全部看完，連假期間會把全部都看懂，試著用自己的方式寫一個新的
