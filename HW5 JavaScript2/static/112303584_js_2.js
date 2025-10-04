@@ -96,5 +96,18 @@ document.addEventListener("DOMContentLoaded", () => { //「初始化事件監聽
         input.value = clampQtyByStock(input.value, stock, false);
         updateSubtotal();
         });
+
+        // 每列的 checkbox 變動：更新總價與 master 狀態
+        const rowCb = $('input[type="checkbox"]', row);
+        if (rowCb) {
+            rowCb.addEventListener("change", () => {
+                updateTotal();
+                syncMasterFromItems();
+            });
+        }
+
+        // 初始化：把初值矯正一次再算小計
+        input.value = clampQtyByStock(input.value, getStock(row), false);
+        updateSubtotal();
     });
 });
