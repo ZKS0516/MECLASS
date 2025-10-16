@@ -41,7 +41,7 @@ def calculate_check_digit(twid9):
         return None
     code = result[0]
     digits = [code // 10, code % 10] + [int(x) for x in twid9[1:]]
-    weights = [1, 9, 8, 7, 6, 5, 4, 3, 2]
+    weights = [1, 9, 8, 7, 6, 5, 4, 3, 2, 1]
     total = sum(d * w for d, w in zip(digits, weights))
     for check_digit in range(10):
         if (total + check_digit) % 10 == 0:
@@ -65,7 +65,7 @@ def is_valid_twid(twid):
     digits = [code // 10, code % 10] + [int(x) for x in twid[1:]]
 
     # 權重
-    weights = [1, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    weights = [1, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1]
 
     # 加總
     total = sum(d * w for d, w in zip(digits, weights))
