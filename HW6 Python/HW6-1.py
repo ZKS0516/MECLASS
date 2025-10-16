@@ -59,7 +59,7 @@ def is_valid_twid(twid):
     if not result:
         return False
     code = result[0]
-
+    print(code)
 
     # 拆成兩位數字
     digits = [code // 10, code % 10] + [int(x) for x in twid[1:]]
@@ -172,6 +172,8 @@ while True:
         print("✅ 合法身分證字號")
         print(f"{user_input} → {country}、{gender}、{citizenship}")
 
-
+twid = "F130410529"
+print("格式正確：" , re.match(r'^[A-Z][0-9]{9}$', twid) is not None)
+print("驗證通過：" , is_valid_twid(twid))
 
 
