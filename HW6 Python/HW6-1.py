@@ -29,11 +29,11 @@ INSERT OR IGNORE INTO twid_meta (letter, code, city) VALUES (?, ?, ?)
 """, [(k, v[0], v[1]) for k, v in twid_data.items()])
 conn.commit()
 
-# 🧪 格式檢查：只接受 9 碼格式（尚未補齊驗證碼）
+# 格式檢查：只接受 9 碼格式（尚未補齊驗證碼）
 def is_format_valid(twid):
     return bool(re.match(r'^[A-Z][0-9]{8}$', twid)) and twid[1] in ('1', '2', '8', '9')
 
-# 🧮 補上第10碼（驗證碼）
+# 補上第10碼（驗證碼）
 def calculate_check_digit(twid9):
     cursor.execute("SELECT code FROM twid_meta WHERE letter = ?", (twid9[0].upper(),))
     result = cursor.fetchone()
@@ -48,7 +48,7 @@ def calculate_check_digit(twid9):
             return twid9 + str(check_digit)
     return None
 
-# ✅ 真偽判斷（完整10碼）
+# 真偽判斷（完整10碼）
 def is_valid_twid(twid):
     if len(twid) != 10 or not twid[0].isalpha() or not twid[1:].isdigit():
         return False
@@ -71,7 +71,7 @@ def is_valid_twid(twid):
     return total % 10 == 0
 
 
-# 🧠 含意解析：性別、縣市、國籍
+# 含意解析：性別、縣市、國籍
 def extract_gender(code):
     return {
         '1': '男性',
@@ -99,7 +99,7 @@ def extract_country(letter):
     result = cursor.fetchone()
     return result[0] if result else None
 
-# 🧹 清理、補齊、解析並更新資料表
+# 清理、補齊、解析並更新資料表
 cursor.execute("SELECT ID FROM ID_table")
 raw_ids = [row[0] for row in cursor.fetchall()]
 
@@ -149,7 +149,7 @@ for twid in twids:
 conn.commit()
 print(f"✅ 已解析並更新 {updated} 筆身份欄位")
 
-# 🔍 查詢互動功能
+# 查詢互動功能
 while True:
     user_input = input("請輸入身分證字號（輸入 q 離開）：").strip().upper()
     if not user_input:
