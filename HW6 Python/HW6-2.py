@@ -22,7 +22,7 @@ def is_valid_password(pw):
         errors.append("密碼不可為連號")
     return errors
 
-# 
+# 註冊
 def sign_up():
     name = input("請輸入姓名：").strip()
     while True:
@@ -60,3 +60,27 @@ def sign_up():
             print("註冊成功")
     else:
         print("已取消註冊")
+
+# 登入
+def sign_in():
+    name = input("請輸入姓名：").strip()
+    email = input("請輸入 Email：").strip()
+    cursor.execute("SELECT * FROM user WHERE email = ? AND name = ?", (email, name))
+    result = cursor.fetchone()
+    if not result:
+        print("名字或 Email 錯誤")
+        return
+
+    while True:
+        pw = input("請輸入密碼：").strip()
+        if pw != result[2]:
+            print("密碼錯誤，忘記密碼 Y / N ?")
+            choice = input().strip().upper()
+            if choice == 'Y':
+                sign_up()
+                return
+            elif choice == 'N':
+                continue
+        else:
+            print("登入成功")
+            break
