@@ -22,6 +22,19 @@ def is_valid_password(pw):
         errors.append("密碼不可為連號")
     return errors
 
+# 對Y/N回答增加限制與次數
+def yes_or_no(prompt="Y / N： ", max_retry=3, default=False):
+    for _ in range(max_retry):
+        choice = input(prompt).strip().upper()
+        if choice == 'Y':
+            return True
+        elif choice == 'N':
+            return False
+        else:
+            print("請輸入 Y 或 N")
+    print(f"超過重試次數，預設為 {'Y' if default else 'N'}")
+    return default
+
 # 註冊模式
 def sign_up():
     name = input("請輸入姓名：").strip()
@@ -43,24 +56,20 @@ def sign_up():
         else:
             break
 
-    print(f"save {name} | {email} | {pw} | Y / N ?")
-    confirm = input().strip().upper()
-    if confirm == 'Y':
+    if yes_or_no(f"save {name} | {email} | {pw} |\nY / N : ", 3, False):
         cursor.execute("SELECT * FROM user_data WHERE email = ?", (email,))
         if cursor.fetchone():
-            print("此 Email 已存在，是否更新此 Email 資訊？")
-            update = input("Y / N：").strip().upper()
-            if update == 'Y':
+            if yes_or_no("此 Email 已存在，是否更新此 Email 資訊？\nY / N : ", 3, False):
                 cursor.execute("UPDATE user_data SET name=?, password=? WHERE email=?", (name, pw, email))
                 conn.commit()
                 print("資料已更新")
-            elif update == 'N':
+            else:
                 print("已取消註冊")
         else:
             cursor.execute("INSERT INTO user_data VALUES (?, ?, ?)", (name, email, pw))
             conn.commit()
             print("註冊成功")
-    elif confirm == 'N':
+    else:
         print("已取消註冊")
 
 # 登入模式
@@ -76,12 +85,11 @@ def sign_in():
     while True:
         pw = input("請輸入密碼：").strip()
         if pw != result[2]:
-            print("密碼錯誤，忘記密碼 Y / N ?")
-            choice = input().strip().upper()
-            if choice == 'Y':
+            if yes_or_no("密碼錯誤，忘記密碼？\nY / N : ", 3, False):
+                print("進入註冊模式")
                 sign_up()
                 return
-            elif choice == 'N':
+            else:
                 continue
         else:
             print("登入成功")
