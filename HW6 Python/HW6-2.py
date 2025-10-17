@@ -22,7 +22,7 @@ def is_valid_password(pw):
         errors.append("密碼不可為連號")
     return errors
 
-# 註冊
+# 註冊模式
 def sign_up():
     name = input("請輸入姓名：").strip()
     while True:
@@ -61,7 +61,7 @@ def sign_up():
     else:
         print("已取消註冊")
 
-# 登入
+# 登入模式
 def sign_in():
     name = input("請輸入姓名：").strip()
     email = input("請輸入 Email：").strip()
@@ -84,3 +84,16 @@ def sign_in():
         else:
             print("登入成功")
             break
+
+# 主流程入口
+def main():
+    while True:
+        mode = input("(a) sign up / (b) sign in：").strip().lower()
+        if mode == 'a':
+            sign_up()
+        elif mode == 'b':
+            sign_in()
+        else:
+            print("請輸入 a 或 b")
+
+main()
