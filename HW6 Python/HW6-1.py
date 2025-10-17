@@ -110,12 +110,12 @@ valid_ids = [twid for twid in raw_9 if is_format_valid(twid)]
 
 # 刪除格式錯誤資料
 if invalid_ids:
-    print("❌ 格式錯誤的身分證字號：")
+    print("格式錯誤的身分證字號：")
     for bad in invalid_ids:
         print("  -", bad)
     cursor.executemany("DELETE FROM ID_table WHERE ID = ?", [(bad,) for bad in invalid_ids])
     conn.commit()
-    print(f"🧹 已刪除 {len(invalid_ids)} 筆格式錯誤資料")
+    print(f"已刪除 {len(invalid_ids)} 筆格式錯誤資料")
 
 # 補齊驗證碼並更新 ID 欄位
 fixed = []
@@ -127,7 +127,7 @@ for raw in valid_ids:
 for full_id, raw_id in fixed:
     cursor.execute("UPDATE ID_table SET ID = ? WHERE ID = ?", (full_id, raw_id))
 conn.commit()
-print(f"✅ 已補齊並更新 {len(fixed)} 筆身分證字號")
+print(f"已補齊並更新 {len(fixed)} 筆身分證字號")
 
 # 解析含意並更新 gender、country、citizenship 欄位
 cursor.execute("SELECT ID FROM ID_table")
@@ -147,28 +147,28 @@ for twid in twids:
         updated += 1
 
 conn.commit()
-print(f"✅ 已解析並更新 {updated} 筆身份欄位")
+print(f"已解析並更新 {updated} 筆身份欄位")
 
 # 查詢互動功能
 while True:
     user_input = input("請輸入身分證字號（輸入 q 離開）：").strip().upper()
     if not user_input:
-        print("⚠️ 請勿輸入空白，請重新輸入")
+        print("請勿輸入空白，請重新輸入")
         continue
     if user_input.lower() == 'q':
-        print("👋 離開查詢模式")
+        print("離開查詢模式")
         break
     elif len(user_input) != 10:
-        print("❌ 請輸入完整 10 碼身分證字號")
+        print("請輸入完整 10 碼身分證字號")
         continue
     elif not is_valid_twid(user_input):
-        print("❌ 非法身分證字號：格式錯誤或驗證碼不正確")
+        print("非法身分證字號：格式錯誤或驗證碼不正確")
         continue
     else:
         gender = extract_gender(user_input[1])
         citizenship = extract_citizenship(user_input[2])
         country = extract_country(user_input[0])
-        print("✅ 合法身分證字號")
+        print("合法身分證字號")
         print(f"{user_input} → {country}、{gender}、{citizenship}")
 
 
