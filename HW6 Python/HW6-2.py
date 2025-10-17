@@ -2,7 +2,7 @@ import sqlite3
 import re
 
 
-conn = sqlite3.connect("data/users.db")
+conn = sqlite3.connect("users.db")
 cursor = conn.cursor()
 
 # 檢查email格式

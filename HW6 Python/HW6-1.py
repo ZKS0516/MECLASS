@@ -2,7 +2,7 @@ import sqlite3
 import re
 
 
-conn = sqlite3.connect('data/ID_data.db') # 連線物件，用它來提交變更、關閉連線等
+conn = sqlite3.connect('ID_data.db') # 連線物件，用它來提交變更、關閉連線等
 cursor = conn.cursor() # 游標物件，執行 SQL 查詢、插入、刪除等操作
 
 # 建立 twid_meta 表格（英文字母 → 數字代碼 + 縣市）.exetute 是sqlite3模組裡游標物件(cursor)的方法，它的功能是：執行一條 SQL 指令
