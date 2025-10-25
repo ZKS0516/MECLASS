@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Teacher Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2><strong>Login</strong></h2>
+    <h2>Teacher Login</h2>
     <form id="loginForm">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
+        <input type="text" id="username" name="username" required><br>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+        <input type="password" id="password" name="password" required><br>
 
         <button type="submit">Login</button>
     </form>
@@ -20,4 +20,3 @@
     <script src="{{ url_for('static', filename='ajax.js') }}"></script>
 </body>
 </html>
-
