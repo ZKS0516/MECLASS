@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Grades</h2>
+    <p>Welcome, {{ teacher_name }}!</p>
+
+    <form id="gradeForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="student_id">Student ID:</label>
+        <input type="text" id="student_id" name="student_id" pattern="\d+" title="Only numbers allowed" required><br>
+
+        <label for="score">Score:</label>
+        <input type="number" id="score" name="score" min="0" max="100" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <hr>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Student ID</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody id="gradeTableBody">
+            {% for grade in grades %}
+            <tr>
+                <td>{{ grade.name }}</td>
+                <td>{{ grade.student_id }}</td>
+                <td>{{ grade.score }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+
+    <form id="deleteForm">
+        <label for="delete_id">Enter Student ID to delete:</label>
+        <input type="text" id="delete_id" name="delete_id" required>
+        <button type="submit">Delete</button>
+    </form>
+
+    <script src="{{ url_for('static', filename='grade.js') }}"></script>
+</body>
+</html>
